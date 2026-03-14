@@ -30,7 +30,7 @@ These parameters are used to analyze the risk of cardiovascular disease.
 - HTML
 - CSS
 - JavaScript
-- Machine Learning (backend integration possible)
+
 
 ---
 
