@@ -35,3 +35,11 @@ These parameters are used to analyze the risk of cardiovascular disease.
 ---
 
 ## 📂 Project Structure
+|_LICENSE
+|_Read Me.txt
+|_custom-settings.scss
+|_age.jpg
+|_analysis_githubpage.jpg
+|_angina.jpg
+|_animate.css
+|back-to-top.js
