@@ -98,8 +98,11 @@ heart-ai-platform
 ## 👩‍💻 Author
 
 **Jahanvi Bagjani**
+
 **Nigam Kumari**
+
 **pratham Mishra**
+
 **priyanz Varshney**
 
 GitHub:  
