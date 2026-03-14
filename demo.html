@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Heart AI Platform</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Bootstrap -->
+<title>Heart AI Dashboard</title>
+
 <link rel="stylesheet" href="bootstrap.min.css">
-
-<!-- Existing CSS -->
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="animate.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
 body{
-background:#f5f7fb;
-font-family:Arial, Helvetica, sans-serif;
+background:#f4f7fb;
+font-family:Arial;
 }
 
 .hero{
-background:linear-gradient(135deg,#e63946,#ff6b6b);
+background-image:url(main_back.jpg);
+background-size:cover;
 color:white;
-padding:80px 20px;
 text-align:center;
+padding:120px 20px;
 }
 
 .section{
-padding:60px 20px;
+padding:70px 20px;
 }
 
 .card-modern{
@@ -36,17 +38,12 @@ border-radius:12px;
 padding:25px;
 box-shadow:0 8px 20px rgba(0,0,0,0.08);
 margin-bottom:25px;
-transition:0.3s;
 }
 
-.card-modern:hover{
-transform:translateY(-6px);
-}
-
-.feature-icon{
-font-size:40px;
-margin-bottom:10px;
-color:#e63946;
+.gallery img{
+width:100%;
+border-radius:10px;
+margin-bottom:20px;
 }
 
 .predict-box{
@@ -56,7 +53,7 @@ border-radius:12px;
 box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
 
-.btn-predict{
+.btn-main{
 background:#e63946;
 color:white;
 border:none;
@@ -64,28 +61,11 @@ padding:12px 25px;
 border-radius:6px;
 }
 
-.btn-predict:hover{
-background:#d62828;
-}
-
-.result-box{
-margin-top:20px;
-padding:20px;
-background:#f1f3f5;
-border-radius:10px;
-}
-
 footer{
-background:#1d1f24;
+background:#1f1f1f;
 color:white;
 text-align:center;
-padding:30px;
-}
-
-.gallery img{
-width:100%;
-border-radius:10px;
-margin-bottom:20px;
+padding:40px;
 }
 
 </style>
@@ -95,13 +75,21 @@ margin-bottom:20px;
 <body>
 
 <!-- HERO -->
-<div class="hero">
-<h1>Heart Disease Analysis Platform</h1>
-<p>Analyze cardiovascular risk factors using healthcare data</p>
-</div>
+
+<section class="hero">
+
+<h1 class="animate__animated animate__fadeInDown">
+Heart Disease Analysis Platform
+</h1>
+
+<p>AI Dashboard for Cardiovascular Risk Analysis</p>
+
+</section>
+
 
 <!-- FEATURES -->
-<div class="section container">
+
+<section class="section container">
 
 <h2 class="text-center mb-5">Platform Features</h2>
 
@@ -109,33 +97,33 @@ margin-bottom:20px;
 
 <div class="col-md-4">
 <div class="card-modern text-center">
-<div class="feature-icon">❤️</div>
-<h4>Heart Risk Analysis</h4>
-<p>Analyze medical parameters to understand cardiovascular risk patterns.</p>
+<h4>Medical Data Analysis</h4>
+<p>Analyze heart disease risk using medical parameters.</p>
 </div>
 </div>
 
 <div class="col-md-4">
 <div class="card-modern text-center">
-<div class="feature-icon">📊</div>
-<h4>Data Visualization</h4>
-<p>Understand heart disease factors through healthcare datasets.</p>
+<h4>AI Prediction</h4>
+<p>Predict heart disease risk using machine learning models.</p>
 </div>
 </div>
 
 <div class="col-md-4">
 <div class="card-modern text-center">
-<div class="feature-icon">🤖</div>
-<h4>AI Prediction Ready</h4>
-<p>This interface can connect with machine learning prediction models.</p>
+<h4>Interactive Dashboard</h4>
+<p>Visualize dataset insights through charts.</p>
 </div>
 </div>
 
 </div>
-</div>
+
+</section>
+
 
 <!-- PREDICTION FORM -->
-<div class="section container">
+
+<section class="section container">
 
 <h2 class="text-center mb-4">Heart Disease Predictor</h2>
 
@@ -147,31 +135,31 @@ margin-bottom:20px;
 
 <div class="col-md-4">
 <label>Age</label>
-<input type="number" class="form-control" required>
-</div>
-
-<div class="col-md-4">
-<label>Sex (0=female,1=male)</label>
 <input type="number" class="form-control">
 </div>
 
 <div class="col-md-4">
-<label>Chest Pain Type</label>
+<label>Sex</label>
 <input type="number" class="form-control">
 </div>
 
 <div class="col-md-4">
-<label>Resting Blood Pressure</label>
+<label>Chest Pain</label>
 <input type="number" class="form-control">
 </div>
 
 <div class="col-md-4">
-<label>Serum Cholesterol</label>
+<label>Blood Pressure</label>
 <input type="number" class="form-control">
 </div>
 
 <div class="col-md-4">
-<label>Maximum Heart Rate</label>
+<label>Cholesterol</label>
+<input type="number" class="form-control">
+</div>
+
+<div class="col-md-4">
+<label>Max Heart Rate</label>
 <input type="number" class="form-control">
 </div>
 
@@ -179,22 +167,47 @@ margin-bottom:20px;
 
 <br>
 
-<button class="btn-predict">Analyze Risk</button>
+<button class="btn-main">Predict Risk</button>
 
 </form>
 
-<div class="result-box" id="resultBox">
-Prediction result will appear here.
+<div id="resultBox" style="margin-top:20px;"></div>
+
+</div>
+
+</section>
+
+
+<!-- CHART DASHBOARD -->
+
+<section class="section container">
+
+<h2 class="text-center mb-5">Heart Disease Dataset Insights</h2>
+
+<div class="row">
+
+<div class="col-md-6">
+<div class="card-modern">
+<canvas id="chartRisk"></canvas>
+</div>
+</div>
+
+<div class="col-md-6">
+<div class="card-modern">
+<canvas id="chartAge"></canvas>
+</div>
 </div>
 
 </div>
 
-</div>
+</section>
 
-<!-- GALLERY -->
-<div class="section container">
 
-<h2 class="text-center mb-5">Heart Disease Insights</h2>
+<!-- IMAGE GALLERY -->
+
+<section class="section container">
+
+<h2 class="text-center mb-5">Heart Disease Factors</h2>
 
 <div class="row gallery">
 
@@ -207,14 +220,6 @@ Prediction result will appear here.
 </div>
 
 <div class="col-md-4">
-<img src="dataset.jpg">
-</div>
-
-<div class="col-md-4">
-<img src="plots.png">
-</div>
-
-<div class="col-md-4">
 <img src="serumchol.jpg">
 </div>
 
@@ -222,29 +227,83 @@ Prediction result will appear here.
 <img src="sex.jpg">
 </div>
 
+<div class="col-md-4">
+<img src="thaliumstress.jpg">
+</div>
+
+<div class="col-md-4">
+<img src="dataset.jpg">
 </div>
 
 </div>
 
-<!-- FOOTER -->
+</section>
+
+
+<!-- DATASET VISUAL -->
+
+<section class="section container text-center">
+
+<h2>Dataset Visualization</h2>
+
+<img src="plots.png" width="80%">
+
+</section>
+
+
 <footer>
 
-<h4>Heart AI Platform</h4>
-<p>Built by Jahanvi B</p>
+<h3>Heart AI Platform</h3>
+<p>Created by Jahanvi B</p>
 
 </footer>
+
 
 <script>
 
 document.getElementById("predictForm").addEventListener("submit",function(e){
-e.preventDefault();
+
+e.preventDefault()
 
 document.getElementById("resultBox").innerHTML =
-"<b>Risk Level:</b> Moderate (Demo prediction)";
+"<div class='alert alert-info'>Prediction Result: Moderate Risk (Demo)</div>"
 
-});
+})
+
+
+const ctx1=document.getElementById('chartRisk')
+
+new Chart(ctx1,{
+type:'pie',
+data:{
+labels:['Low Risk','High Risk'],
+datasets:[{
+data:[165,138],
+backgroundColor:['#2a9d8f','#e63946']
+}]
+}
+})
+
+
+const ctx2=document.getElementById('chartAge')
+
+new Chart(ctx2,{
+type:'bar',
+data:{
+labels:['30','40','50','60','70'],
+datasets:[{
+label:'Patients',
+data:[20,45,60,50,25],
+backgroundColor:'#457b9d'
+}]
+}
+})
 
 </script>
 
+<script src="custom.js"></script>
+<script src="scripts.js"></script>
+
 </body>
 </html>
+
