@@ -2,7 +2,7 @@
 
 An interactive web-based platform for analyzing heart disease risk factors and visualizing cardiovascular health data.
 
-The platform provides a modern dashboard interface where users can explore medical parameters, analyze heart disease risk factors, and visualize dataset insights.
+The platform provides a modern dashboard interface where users can explore Medical parameters, analyze heart disease risk factors, and visualize dataset insights.
 
 ---
 
